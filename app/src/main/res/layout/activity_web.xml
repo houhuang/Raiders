@@ -9,13 +9,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-                <WebView
+                <!--<WebView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:id="@+id/webView">-->
+                <!--</WebView>-->
+
+                <com.jd.raiders.helper.MyWebView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/webView">
-                </WebView>
+
+                </com.jd.raiders.helper.MyWebView>
 
         </FrameLayout>
+
+        <ProgressBar
+            android:id="@+id/google_progress"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"/>
 
 
 </RelativeLayout>

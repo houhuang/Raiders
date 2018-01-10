@@ -1,37 +1,62 @@
 package com.jd.raiders.activity;
 
+import android.content.SharedPreferences;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.net.http.SslError;
+import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.SslErrorHandler;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import com.jd.raiders.R;
+import com.jd.raiders.helper.MyWebView;
+import com.jd.raiders.loading.FoldingCirclesDrawable;
+import com.jd.raiders.loading.NexusRotationCrossDrawable;
 
 public class WebActivity extends AppCompatActivity {
 
-    private WebView mWebView;
+    private MyWebView mWebView;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
 
-        mWebView = (WebView)findViewById(R.id.webView);
+
+        Drawable progressDrawable = new FoldingCirclesDrawable.Builder(this)
+                .colors(getProgressDrawableColors())
+                .build();
+
+        mProgressBar = (ProgressBar)findViewById(R.id.google_progress);
+        Rect bounds = mProgressBar.getIndeterminateDrawable().getBounds();
+        mProgressBar.setIndeterminateDrawable(progressDrawable);
+        mProgressBar.getIndeterminateDrawable().setBounds(bounds);
+
+        mWebView = (MyWebView) findViewById(R.id.webView);
         mWebView.setWebViewClient(new WebViewClient());
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
-        mWebView.loadUrl("http://www.gamersky.com/handbook/201704/892518.shtml");
+        mWebView.loadUrl("https://www.cnblogs.com/shytong/p/5240077.html");
+//        mWebView.getSettings().setBlockNetworkImage(true);
 
         mWebView.setWebViewClient(new WebViewClient()
         {
+
+
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-//                view.loadUrl("javascript:function setTop(){document.querySelector('.ad-footer').style.display=\"none\";}setTop();");
 
+//                mProgressBar.setVisibility(View.GONE);
 
                 if(url!=null && url.contains("/p/resource/weapon/iProductID/39")){
 
@@ -48,8 +73,6 @@ public class WebActivity extends AppCompatActivity {
                 }
 
 
-
-
             }
 
             @Override
@@ -57,8 +80,24 @@ public class WebActivity extends AppCompatActivity {
                 super.onReceivedSslError(view, handler, error);
             }
 
-
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                //webview content not jump
+                return true;
+            }
         });
+    }
+
+    private int[] getProgressDrawableColors() {
+        int[] colors = new int[4];
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        colors[0] = ContextCompat.getColor(this, R.color.red);
+        colors[1] = ContextCompat.getColor(this, R.color.blue);;
+        colors[2] = ContextCompat.getColor(this, R.color.yellow);;
+        colors[3] = ContextCompat.getColor(this, R.color.green);;
+
+
+        return colors;
     }
 
     @Override
