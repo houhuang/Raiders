@@ -20,6 +20,7 @@ import com.jd.raiders.R;
 import com.jd.raiders.helper.MyWebView;
 import com.jd.raiders.loading.FoldingCirclesDrawable;
 import com.jd.raiders.loading.NexusRotationCrossDrawable;
+import com.jd.raiders.utils.StatusBarUtils;
 
 public class WebActivity extends AppCompatActivity {
 
@@ -31,10 +32,13 @@ public class WebActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
 
+        StatusBarUtils.setWindowStatusBarColor(this, R.color.homeStatusBarColorBlack);
+//        StatusBarUtils.StatusBarLightMode(this);
 
         Drawable progressDrawable = new FoldingCirclesDrawable.Builder(this)
                 .colors(getProgressDrawableColors())
                 .build();
+        progressDrawable.setLevel(5000);
 
         mProgressBar = (ProgressBar)findViewById(R.id.google_progress);
         Rect bounds = mProgressBar.getIndeterminateDrawable().getBounds();

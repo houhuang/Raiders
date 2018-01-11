@@ -1,5 +1,8 @@
 package com.jd.raiders.activity;
 
+import android.content.Context;
+import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +29,8 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private Context mContext;
+
     private ImageView img_show;
     private Animation animation = null;
     private ViewPager mViewPager;
@@ -42,7 +47,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        StatusBarUtils.setWindowStatusBarColor(this, R.color.colorPrimaryDark);
+        mContext = this;
+
+        StatusBarUtils.setWindowStatusBarColor(this, R.color.homeStatusBarColor);
+        StatusBarUtils.StatusBarLightMode(this);
+
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -174,6 +183,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     private void imageRunAnimation(int time, final int offset)
     {
+        for (int i = 0; i < mTextView.length; ++i)
+        {
+            mTextView[i].setTextColor(ContextCompat.getColor(this, R.color.home_topBar_textRelease));
+            mTextView[i].setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+        }
+
         animation = new TranslateAnimation(0, offset, 0, 0);
         animation.setDuration(time);
         animation.setFillAfter(true);
@@ -194,7 +209,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 params.setMargins(img_show.getLeft() + offset, 0, 0, 0);
                 img_show.setLayoutParams(params);
 
-
+                mTextView[current_page].setTextColor(ContextCompat.getColor(mContext, R.color.home_topBar_textPress));
+                mTextView[current_page].setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 setTopMenuEnable(true);
 
 //                new Handler().postDelayed(new Runnable(){

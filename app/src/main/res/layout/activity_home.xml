@@ -4,17 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/backgroundColor"
     tools:context=".activity.HomeActivity">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:orientation="vertical"
-        android:background="#ff999999">
+        android:layout_height="45dp"
+        android:background="@color/toolBarColor">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_height="45dp"
             android:orientation="horizontal">
 
             <TextView
@@ -22,21 +23,22 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/t1"
-                android:textSize="25sp"
-                android:textColor="#000"
+                android:textSize="20sp"
+                android:textColor="@color/home_topBar_textPress"
                 android:text="属性5"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
+                android:layout_marginRight="10dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/t2"
-                android:textSize="25sp"
-                android:textColor="#000"
+                android:textSize="20sp"
+                android:textColor="@color/home_topBar_textRelease"
                 android:text="属性2"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -49,8 +51,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/t3"
-                android:textSize="25sp"
-                android:textColor="#000"
+                android:textSize="20sp"
+                android:textColor="@color/home_topBar_textRelease"
                 android:text="属性3"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -62,8 +64,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/t4"
-                android:textSize="25sp"
-                android:textColor="#000"
+                android:textSize="20sp"
+                android:textColor="@color/home_topBar_textRelease"
                 android:text="属性4"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -75,18 +77,20 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="5dp">
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="5dp"
+            android:layout_height="3dp">
 
             <ImageView
                 android:id="@+id/img_show"
-                android:layout_width="60dp"
-                android:layout_height="5dp"
-                android:layout_marginLeft="15dp"
-                android:background="#f00" />
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="27dp"
+                android:background="@drawable/bar_iamge" />
 
         </FrameLayout>
 
-    </LinearLayout>
+    </FrameLayout>
 
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"

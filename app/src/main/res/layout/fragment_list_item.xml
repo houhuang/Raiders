@@ -9,22 +9,22 @@
         android:layout_height="45dp"
         android:padding="0dp">
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="#f00"
-            android:id="@+id/image"/>
+        <com.jd.raiders.helper.TrigonView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:id="@+id/image_trigon"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/text"
             android:textSize="25sp"
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginLeft="15dp"/>
 
     </FrameLayout>
+
 
 
 </LinearLayout>
