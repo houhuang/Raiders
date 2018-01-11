@@ -1,6 +1,8 @@
 package com.jd.raiders.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jd.raiders.R;
+import com.jd.raiders.activity.TextActivity;
+import com.jd.raiders.helper.TrigonView;
 
 import java.util.List;
 
@@ -49,9 +53,17 @@ public class FragmentListAdapter extends BaseAdapter {
         if (convertView == null)
         {
             view = LayoutInflater.from(mContext).inflate(R.layout.fragment_list_item, parent, false);
-            holder.imageView = (ImageView)view.findViewById(R.id.image);
+            holder.imageView = (TrigonView) view.findViewById(R.id.image_trigon);
             holder.textView = (TextView)view.findViewById(R.id.text);
             view.setTag(holder);
+//            view.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(mContext, TextActivity.class);
+//                    mContext.startActivity(intent);
+//
+//                }
+//            });
         }else
         {
             view = convertView;
@@ -60,12 +72,22 @@ public class FragmentListAdapter extends BaseAdapter {
 
         holder.textView.setText(mList.get(position));
 
+        boolean isShow = mContext.getSharedPreferences("userdata", Activity.MODE_PRIVATE).getBoolean(mList.get(position), false);
+        if (!isShow)
+        {
+            holder.imageView.setVisibility(View.VISIBLE);
+        }else
+        {
+            holder.imageView.setVisibility(View.INVISIBLE);
+        }
+
+
         return view;
     }
 
     class Holder
     {
-        public ImageView imageView;
+        public TrigonView imageView;
         public TextView textView;
     }
 }

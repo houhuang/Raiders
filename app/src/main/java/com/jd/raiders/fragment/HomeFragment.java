@@ -1,9 +1,12 @@
 package com.jd.raiders.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -66,9 +69,19 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                SharedPreferences.Editor editor = mContext.getSharedPreferences("userdata", Activity.MODE_PRIVATE).edit();
+                editor.putBoolean(mList.get(position), true);
+                editor.apply();
+
                 Intent intent = new Intent(mContext, TextActivity.class);
                 startActivity(intent);
 
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                       adapter.notifyDataSetChanged();
+                    }
+                }, 1000);
             }
         });
 

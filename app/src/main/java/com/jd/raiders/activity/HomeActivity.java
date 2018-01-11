@@ -238,4 +238,27 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             mTextView[i].setEnabled(isEnable);
         }
     }
+
+    private boolean isQuit = false;
+
+    @Override
+    public void onBackPressed() {
+        if (!isQuit) {
+            Toast.makeText(HomeActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+            isQuit = true; //这段代码意思是,在两秒钟之后isQuit会变成false
+             new Thread(new Runnable() {
+                 @Override public void run() {
+                     try {
+                         Thread.sleep(2000);
+                     } catch (InterruptedException e) {
+                         e.printStackTrace();
+                     } finally {
+                         isQuit = false;
+                     } } }).start();
+
+        } else {
+            System.exit(0);
+        }
+
+    }
 }
