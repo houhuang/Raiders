@@ -71,9 +71,9 @@ public class HomeFragment extends Fragment {
 
                 SharedPreferences.Editor editor = mContext.getSharedPreferences("userdata", Activity.MODE_PRIVATE).edit();
                 editor.putBoolean(mList.get(position), true);
-                editor.apply();
+                editor.commit();
 
-                Intent intent = new Intent(mContext, TextActivity.class);
+                Intent intent = new Intent(mContext, WebActivity.class);
                 startActivity(intent);
 
                 new Handler().postDelayed(new Runnable() {

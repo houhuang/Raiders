@@ -1,7 +1,9 @@
 package com.jd.raiders.activity;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -219,7 +221,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //                        setTopMenuEnable(true);
 //                    }
 //                }, 100);
-
             }
 
             @Override

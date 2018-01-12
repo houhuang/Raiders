@@ -31,7 +31,7 @@ public class DataManager {
             {
                 Random random = new Random();
 
-                int xx= random.nextInt(1000)*123456;
+                int xx= (i+1)* (j+1)*10000;
                 list.add(String.valueOf(xx));
             }
             mFragmentData.add(list);
