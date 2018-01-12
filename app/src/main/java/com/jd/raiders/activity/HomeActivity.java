@@ -86,24 +86,60 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) img_show
+                        .getLayoutParams();
+
+                /**
+                 * 利用currentIndex(当前所在页面)和position(下一个页面)以及offset来
+                 * 设置mTabLineIv的左边距 滑动场景：
+                 * 记3个页面,
+                 * 从左到右分别为0,1,2
+                 * 0->1; 1->2; 2->1; 1->0
+                 */
+
+                int offset = screenWidth / 4;
+
+                Log.d("PPPPPPPPPPPP ",String.valueOf(position) + "   " + String.valueOf(positionOffset));
 
 
+
+                if (current_page == 0 && position == 0)
+                {
+                    lp.leftMargin = orignalLeft + current_page*(screenWidth/4) + (int)(positionOffset  * (screenWidth * 1.0 / 4));
+                }else if (current_page == 1 && position == 0)
+                {
+                    lp.leftMargin = orignalLeft + current_page*(screenWidth/4) - (int)((1-positionOffset)  * (screenWidth * 1.0 / 4));
+                }else if (current_page == 1 && position == 1)
+                {
+                    lp.leftMargin = orignalLeft +  current_page*(screenWidth/4) + (int)(positionOffset  * (screenWidth * 1.0 / 4));
+                }else if (current_page == 2 && position == 1)
+                {
+                    lp.leftMargin = orignalLeft +  current_page*(screenWidth/4) - (int)((1-positionOffset)  * (screenWidth * 1.0 / 4));
+                }else if (current_page == 2 && position == 2)
+                {
+                    lp.leftMargin = orignalLeft +  current_page*(screenWidth/4) + (int)(positionOffset  * (screenWidth * 1.0 / 4));
+                }else if (current_page == 3 && position == 2)
+                {
+                    lp.leftMargin = orignalLeft +  current_page*(screenWidth/4) - (int)((1-positionOffset)  * (screenWidth * 1.0 / 4));
+                }
+
+                img_show.setLayoutParams(lp);
             }
 
             @Override
             public void onPageSelected(int position) {
-                int prePage = current_page;
+//                int prePage = current_page;
                 current_page = position;
-
-                if (current_page != prePage)
-                {
-                    setTopMenuEnable(false);
-                    imageRunAnimation(300, (current_page-prePage)*screenWidth/4);
-                    mViewPager.setCurrentItem(current_page);
-                }else
-                {
-                    setTopMenuEnable(true);
-                }
+//
+//                if (current_page != prePage)
+//                {
+//                    setTopMenuEnable(false);
+//                    imageRunAnimation(300, (current_page-prePage)*screenWidth/4);
+//                    mViewPager.setCurrentItem(current_page);
+//                }else
+//                {
+//                    setTopMenuEnable(true);
+//                }
             }
 
             @Override
@@ -146,7 +182,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             mTextView[i].setOnClickListener(this);
         }
 
-        orignalLeft = img_show.getLeft();
+
+        FrameLayout.LayoutParams fl = (FrameLayout.LayoutParams)img_show.getLayoutParams();
+        fl.leftMargin = screenWidth/8 - fl.width/2;
+        img_show.setLayoutParams(fl);
+
+        orignalLeft = screenWidth/8 - fl.width/2;
 
     }
 
