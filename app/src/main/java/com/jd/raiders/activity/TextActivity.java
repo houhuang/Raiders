@@ -12,14 +12,16 @@ import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jd.raiders.R;
+import com.jd.raiders.manager.DataManager;
 import com.jd.raiders.utils.StatusBarUtils;
 
 public class TextActivity extends AppCompatActivity {
 
-    private WebView mWebView;
+    private TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +39,14 @@ public class TextActivity extends AppCompatActivity {
         }
 
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
-        collapsingToolbarLayout.setTitle("米哦啊我耳");
+        collapsingToolbarLayout.setTitle(DataManager.getInstance().getCurrentTextTitle());
         collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
 
         ImageView imageView = (ImageView)findViewById(R.id.toolbarimage);
         Glide.with(this).load(R.drawable.title).into(imageView);
 
-
+        mTextView = (TextView)findViewById(R.id.textView);
+        mTextView.setText(DataManager.getInstance().getCurrentTextContent());
     }
 
     @Override

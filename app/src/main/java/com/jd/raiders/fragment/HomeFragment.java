@@ -17,12 +17,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jd.raiders.R;
 import com.jd.raiders.activity.TextActivity;
 import com.jd.raiders.activity.WebActivity;
 import com.jd.raiders.adapter.FragmentListAdapter;
+import com.jd.raiders.manager.Base;
+import com.jd.raiders.manager.DataManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,19 +38,22 @@ import java.util.List;
 @SuppressLint("ValidFragment")
 public class HomeFragment extends Fragment {
 
-    private List<String> mList = new ArrayList<String>();
+    private List<Base> mList = new ArrayList<Base>();
     private ListView mListVew;
     private Context mContext;
     private FragmentListAdapter adapter;
+
+    private int page;
 
     public HomeFragment() {
         super();
     }
 
-    public HomeFragment(Context context, List<String> list) {
+    public HomeFragment(Context context, List<Base> list, int page) {
         super();
         mList = list;
         mContext = context;
+        this.page = page;
     }
 
     @Override
@@ -70,11 +76,22 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 SharedPreferences.Editor editor = mContext.getSharedPreferences("userdata", Activity.MODE_PRIVATE).edit();
-                editor.putBoolean(mList.get(position), true);
+                editor.putBoolean(mList.get(position).getTitle(), true);
                 editor.commit();
 
-                Intent intent = new Intent(mContext, WebActivity.class);
-                startActivity(intent);
+                DataManager.getInstance().current_page = page;
+                DataManager.getInstance().current_index = position;
+
+                if ( page < 2)
+                {
+                    Intent intent = new Intent(mContext, TextActivity.class);
+                    startActivity(intent);
+                }else
+                {
+                    Intent intent = new Intent(mContext, WebActivity.class);
+                    startActivity(intent);
+                }
+
 
                 new Handler().postDelayed(new Runnable() {
                     @Override

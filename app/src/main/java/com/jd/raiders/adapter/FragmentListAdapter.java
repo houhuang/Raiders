@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.jd.raiders.R;
 import com.jd.raiders.activity.TextActivity;
 import com.jd.raiders.helper.TrigonView;
+import com.jd.raiders.manager.Base;
 
 import java.util.List;
 
@@ -21,10 +22,10 @@ import java.util.List;
  */
 public class FragmentListAdapter extends BaseAdapter {
 
-    private List<String> mList;
+    private List<Base> mList;
     private Context mContext;
 
-    public FragmentListAdapter(Context context, List<String> list)
+    public FragmentListAdapter(Context context, List<Base> list)
     {
         mList = list;
         mContext = context;
@@ -70,9 +71,9 @@ public class FragmentListAdapter extends BaseAdapter {
             holder = (Holder) view.getTag();
         }
 
-        holder.textView.setText(mList.get(position));
+        holder.textView.setText(mList.get(position).getTitle());
 
-        boolean isShow = mContext.getSharedPreferences("userdata", Activity.MODE_PRIVATE).getBoolean(mList.get(position), false);
+        boolean isShow = mContext.getSharedPreferences("userdata", Activity.MODE_PRIVATE).getBoolean(mList.get(position).getTitle(), false);
         if (!isShow)
         {
             holder.imageView.setVisibility(View.VISIBLE);
