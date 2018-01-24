@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1056403394032",
+    "firebase_url": "https://raiders-e85a0.firebaseio.com",
+    "project_id": "raiders-e85a0",
+    "storage_bucket": "raiders-e85a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056403394032:android:fd0cda327c160a56",
+        "android_client_info": {
+          "package_name": "com.jd.raiders"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056403394032-jji2if1qrdc6i0s4h2ftfa1v2tdmldns.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSs44RGvySt4iVMZHSj6PQcj8T8PInQwM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,15 @@
 package com.jd.raiders.manager;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.jd.raiders.utils.GeneralUtil;
 
 import org.json.JSONArray;
@@ -16,6 +24,9 @@ import java.util.Random;
  * Created by houhuang on 18/1/8.
  */
 public class DataManager {
+    private InterstitialAd mInterstitialAd;
+    private RewardedVideoAd mRewardedVideoAd;
+
     public int current_page = 0;
     public int current_index = 0;
 
@@ -122,5 +133,89 @@ public class DataManager {
     public String getCurrentTextTitle()
     {
         return ((BasicData)mFragmentData.get(current_page).get(current_index)).getTitle();
+    }
+
+
+    public void initAds(Context context)
+    {
+        mInterstitialAd = new InterstitialAd(context);
+        mInterstitialAd.setAdUnitId("ca-app-pub-9291877653530829/9237248890");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                // Load the next interstitial.
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+
+        });
+
+
+        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(context);
+        mRewardedVideoAd.setRewardedVideoAdListener(new RewardedVideoAdListener() {
+            @Override
+            public void onRewardedVideoAdLoaded() {
+                Log.d("","");
+            }
+
+            @Override
+            public void onRewardedVideoAdOpened() {
+                Log.d("","");
+            }
+
+            @Override
+            public void onRewardedVideoStarted() {
+                Log.d("","");
+            }
+
+            @Override
+            public void onRewardedVideoAdClosed() {
+                mRewardedVideoAd.loadAd("ca-app-pub-9291877653530829/5429332992",
+                        new AdRequest.Builder().build());
+                Log.d("","");
+            }
+
+            @Override
+            public void onRewarded(RewardItem rewardItem) {
+                Log.d("","");
+            }
+
+            @Override
+            public void onRewardedVideoAdLeftApplication() {
+                Log.d("","");
+            }
+
+            @Override
+            public void onRewardedVideoAdFailedToLoad(int i) {
+                Log.d("","");
+            }
+        });
+
+        mRewardedVideoAd.loadAd("ca-app-pub-9291877653530829/5429332992",
+                new AdRequest.Builder().build());
+
+    }
+
+    public void showAds()
+    {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
+
+    }
+
+    public void showRewardAds()
+    {
+        if (mRewardedVideoAd.isLoaded()) {
+            mRewardedVideoAd.show();
+        }else
+        {
+            showAds();
+        }
+    }
+
+    public RewardedVideoAd getmRewardedVideoAd()
+    {
+        return mRewardedVideoAd;
     }
 }

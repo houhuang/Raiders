@@ -1,5 +1,6 @@
 package com.jd.raiders.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -136,6 +137,28 @@ public class WebActivity extends AppCompatActivity {
         colors[3] = ContextCompat.getColor(this, R.color.green);;
 
         return colors;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        SharedPreferences preferences = this.getSharedPreferences("userdata", Activity.MODE_PRIVATE);
+        int adsCount = preferences.getInt("adscount", 0);
+        if (adsCount >= 5)
+        {
+            SharedPreferences.Editor editor = this.getSharedPreferences("userdata", Activity.MODE_PRIVATE).edit();
+            editor.putInt("adscount", 0);
+            editor.commit();
+
+            DataManager.getInstance().showRewardAds();
+        }else
+        {
+            DataManager.getInstance().showAds();
+        }
+
+
+
     }
 
     @Override

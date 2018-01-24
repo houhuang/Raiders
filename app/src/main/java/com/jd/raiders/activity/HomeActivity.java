@@ -19,6 +19,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.jd.raiders.R;
 import com.jd.raiders.adapter.HomeFragmentAdapter;
 import com.jd.raiders.fragment.HomeFragment;
@@ -31,6 +35,7 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private InterstitialAd mInterstitialAd;
     private Context mContext;
 
     private ImageView img_show;
@@ -62,8 +67,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         bindViews();
         initViewPager();
 
+        MobileAds.initialize(this, "ca-app-pub-9291877653530829~2396508370");
+
+        DataManager.getInstance().initAds(this);
 
     }
+
 
     private void initViewPager()
     {
@@ -278,5 +287,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             System.exit(0);
         }
 
+    }
+
+
+    @Override
+    public void onDestroy() {
+        DataManager.getInstance().getmRewardedVideoAd().destroy(this);
+        super.onDestroy();
     }
 }

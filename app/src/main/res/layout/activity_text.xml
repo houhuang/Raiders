@@ -18,8 +18,8 @@
             android:id="@+id/collapsing_toolbar"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:fitsSystemWindows="true"
-            app:statusBarScrim="#6A5ACD"
-            app:contentScrim="#7B68EE"
+            app:statusBarScrim="@color/colorPrimaryDark"
+            app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView

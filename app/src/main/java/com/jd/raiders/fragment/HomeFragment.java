@@ -75,12 +75,18 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                SharedPreferences.Editor editor = mContext.getSharedPreferences("userdata", Activity.MODE_PRIVATE).edit();
-                editor.putBoolean(mList.get(position).getTitle(), true);
-                editor.commit();
-
                 DataManager.getInstance().current_page = page;
                 DataManager.getInstance().current_index = position;
+
+                SharedPreferences preferences = mContext.getSharedPreferences("userdata", Activity.MODE_PRIVATE);
+                int adsCount = preferences.getInt("adscount", 0);
+                adsCount ++;
+
+                SharedPreferences.Editor editor = mContext.getSharedPreferences("userdata", Activity.MODE_PRIVATE).edit();
+                editor.putBoolean(mList.get(position).getTitle(), true);
+                editor.putInt("adscount", adsCount);
+                editor.commit();
+
 
                 if ( page < 2)
                 {
