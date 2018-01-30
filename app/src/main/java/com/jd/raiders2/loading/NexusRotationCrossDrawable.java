@@ -1,4 +1,4 @@
-package com.jd.raiders.loading;
+package com.jd.raiders2.loading;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -15,7 +15,7 @@ import android.graphics.drawable.Drawable;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 
-import com.jd.raiders.R;
+import com.jd.raiders2.R;
 
 /**
  * Created by houhuang on 18/1/10.

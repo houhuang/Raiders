@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jd.raiders.activity.WebActivity">
+    tools:context="com.jd.raiders2.activity.WebActivity">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -15,12 +15,12 @@
                     <!--android:id="@+id/webView">-->
                 <!--</WebView>-->
 
-                <com.jd.raiders.helper.MyWebView
+                <com.jd.raiders2.helper.MyWebView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/webView">
 
-                </com.jd.raiders.helper.MyWebView>
+                </com.jd.raiders2.helper.MyWebView>
 
         </FrameLayout>
 

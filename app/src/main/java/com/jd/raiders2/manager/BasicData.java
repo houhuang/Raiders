@@ -1,4 +1,4 @@
-package com.jd.raiders.manager;
+package com.jd.raiders2.manager;
 
 /**
  * Created by Administrator on 2018/1/13.

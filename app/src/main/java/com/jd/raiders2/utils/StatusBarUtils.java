@@ -1,4 +1,4 @@
-package com.jd.raiders.utils;
+package com.jd.raiders2.utils;
 
 import android.app.Activity;
 import android.app.Dialog;

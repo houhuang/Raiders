@@ -9,7 +9,7 @@
         android:layout_height="45dp"
         android:padding="0dp">
 
-        <com.jd.raiders.helper.TrigonView
+        <com.jd.raiders2.helper.TrigonView
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:id="@+id/image_trigon"/>

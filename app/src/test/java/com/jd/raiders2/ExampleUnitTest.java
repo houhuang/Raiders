@@ -1,4 +1,4 @@
-package com.jd.raiders;
+package com.jd.raiders2;
 
 import org.junit.Test;
 

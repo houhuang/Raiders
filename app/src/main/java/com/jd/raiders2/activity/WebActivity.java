@@ -1,22 +1,16 @@
-package com.jd.raiders.activity;
+package com.jd.raiders2.activity;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.net.http.SslError;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.webkit.SslErrorHandler;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -24,13 +18,12 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.jd.raiders.R;
-import com.jd.raiders.helper.MyWebView;
-import com.jd.raiders.loading.FoldingCirclesDrawable;
-import com.jd.raiders.loading.NexusRotationCrossDrawable;
-import com.jd.raiders.manager.DataManager;
-import com.jd.raiders.utils.GeneralUtil;
-import com.jd.raiders.utils.StatusBarUtils;
+import com.jd.raiders2.R;
+import com.jd.raiders2.helper.MyWebView;
+import com.jd.raiders2.loading.FoldingCirclesDrawable;
+import com.jd.raiders2.manager.DataManager;
+import com.jd.raiders2.utils.GeneralUtil;
+import com.jd.raiders2.utils.StatusBarUtils;
 
 public class WebActivity extends AppCompatActivity {
 

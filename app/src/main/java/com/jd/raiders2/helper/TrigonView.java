@@ -1,4 +1,4 @@
-package com.jd.raiders.helper;
+package com.jd.raiders2.helper;
 
 import android.content.Context;
 import android.graphics.Canvas;

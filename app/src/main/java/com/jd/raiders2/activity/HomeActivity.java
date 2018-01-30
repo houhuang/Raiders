@@ -1,15 +1,12 @@
-package com.jd.raiders.activity;
+package com.jd.raiders2.activity;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
@@ -19,16 +16,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
-import com.jd.raiders.R;
-import com.jd.raiders.adapter.HomeFragmentAdapter;
-import com.jd.raiders.fragment.HomeFragment;
-import com.jd.raiders.helper.ViewPagerScroller;
-import com.jd.raiders.manager.DataManager;
-import com.jd.raiders.utils.StatusBarUtils;
+import com.jd.raiders2.R;
+import com.jd.raiders2.adapter.HomeFragmentAdapter;
+import com.jd.raiders2.fragment.HomeFragment;
+import com.jd.raiders2.manager.DataManager;
+import com.jd.raiders2.utils.StatusBarUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +61,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         bindViews();
         initViewPager();
 
-        MobileAds.initialize(this, "ca-app-pub-9291877653530829~2396508370");
+        MobileAds.initialize(this, "ca-app-pub-9291877653530829~8013269311");
 
         DataManager.getInstance().initAds(this);
 

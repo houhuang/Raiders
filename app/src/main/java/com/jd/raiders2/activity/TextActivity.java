@@ -1,31 +1,21 @@
-package com.jd.raiders.activity;
+package com.jd.raiders2.activity;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.ColorMatrix;
-import android.graphics.Typeface;
-import android.os.Handler;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
-import com.jd.raiders.R;
-import com.jd.raiders.manager.DataManager;
-import com.jd.raiders.utils.StatusBarUtils;
+import com.jd.raiders2.R;
+import com.jd.raiders2.manager.DataManager;
+import com.jd.raiders2.utils.StatusBarUtils;
 
 public class TextActivity extends AppCompatActivity {
 

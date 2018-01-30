@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "1056403394032",
-    "firebase_url": "https://raiders-e85a0.firebaseio.com",
-    "project_id": "raiders-e85a0",
-    "storage_bucket": "raiders-e85a0.appspot.com"
+    "project_number": "276045660853",
+    "firebase_url": "https://raders2-86f13.firebaseio.com",
+    "project_id": "raders2-86f13",
+    "storage_bucket": "raders2-86f13.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1056403394032:android:fd0cda327c160a56",
+        "mobilesdk_app_id": "1:276045660853:android:50dba19d4d458556",
         "android_client_info": {
-          "package_name": "com.jd.raiders"
+          "package_name": "com.jd.raiders2"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1056403394032-jji2if1qrdc6i0s4h2ftfa1v2tdmldns.apps.googleusercontent.com",
+          "client_id": "276045660853-gsk4njfbcr9km3r8kgceslb7sgk3fm0m.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBSs44RGvySt4iVMZHSj6PQcj8T8PInQwM"
+          "current_key": "AIzaSyDZ1vcKeVvjiIpZtfqNdJSFQSClzkAkVPU"
         }
       ],
       "services": {

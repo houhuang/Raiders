@@ -1,19 +1,16 @@
-package com.jd.raiders.adapter;
+package com.jd.raiders2.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jd.raiders.R;
-import com.jd.raiders.activity.TextActivity;
-import com.jd.raiders.helper.TrigonView;
-import com.jd.raiders.manager.Base;
+import com.jd.raiders2.R;
+import com.jd.raiders2.helper.TrigonView;
+import com.jd.raiders2.manager.Base;
 
 import java.util.List;
 

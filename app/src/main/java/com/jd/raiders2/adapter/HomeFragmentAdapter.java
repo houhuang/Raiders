@@ -1,10 +1,10 @@
-package com.jd.raiders.adapter;
+package com.jd.raiders2.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.jd.raiders.fragment.HomeFragment;
+import com.jd.raiders2.fragment.HomeFragment;
 
 import java.util.List;
 

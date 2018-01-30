@@ -1,4 +1,4 @@
-package com.jd.raiders.fragment;
+package com.jd.raiders2.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -8,24 +8,19 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.jd.raiders.R;
-import com.jd.raiders.activity.TextActivity;
-import com.jd.raiders.activity.WebActivity;
-import com.jd.raiders.adapter.FragmentListAdapter;
-import com.jd.raiders.manager.Base;
-import com.jd.raiders.manager.DataManager;
+import com.jd.raiders2.R;
+import com.jd.raiders2.activity.TextActivity;
+import com.jd.raiders2.activity.WebActivity;
+import com.jd.raiders2.adapter.FragmentListAdapter;
+import com.jd.raiders2.manager.Base;
+import com.jd.raiders2.manager.DataManager;
 
 import java.util.ArrayList;
 import java.util.List;

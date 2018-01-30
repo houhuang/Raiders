@@ -1,6 +1,8 @@
-package com.jd.raiders.manager;
+package com.jd.raiders2.manager;
 
 import android.content.Context;
+import android.telecom.TelecomManager;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.google.android.gms.ads.AdListener;
@@ -10,7 +12,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
-import com.jd.raiders.utils.GeneralUtil;
+import com.jd.raiders2.utils.GeneralUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,7 +20,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by houhuang on 18/1/8.
@@ -26,6 +27,10 @@ import java.util.Random;
 public class DataManager {
     private InterstitialAd mInterstitialAd;
     private RewardedVideoAd mRewardedVideoAd;
+    private AdRequest   mAdrequest;
+
+    private static final String INTERSTITIAL_ID = "ca-app-pub-9291877653530829/6990179292";
+    private static final String REWARD_ID = "ca-app-pub-9291877653530829/3066412004";
 
     public int current_page = 0;
     public int current_index = 0;
@@ -138,16 +143,28 @@ public class DataManager {
 
     public void initAds(Context context)
     {
+        mAdrequest = new AdRequest.Builder().build();
+
         mInterstitialAd = new InterstitialAd(context);
-        mInterstitialAd.setAdUnitId("ca-app-pub-9291877653530829/9237248890");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        mInterstitialAd.setAdListener(new AdListener() {
+        mInterstitialAd.setAdUnitId(INTERSTITIAL_ID);
+        mInterstitialAd.loadAd(mAdrequest);
+        mInterstitialAd.setAdListener(new AdListener(){
             @Override
-            public void onAdClosed() {
-                // Load the next interstitial.
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            public void onAdLoaded() {
+                super.onAdLoaded();
             }
 
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                mInterstitialAd.loadAd(mAdrequest);
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                mInterstitialAd.loadAd(mAdrequest);
+            }
         });
 
 
@@ -170,8 +187,7 @@ public class DataManager {
 
             @Override
             public void onRewardedVideoAdClosed() {
-                mRewardedVideoAd.loadAd("ca-app-pub-9291877653530829/5429332992",
-                        new AdRequest.Builder().build());
+                mRewardedVideoAd.loadAd(REWARD_ID, mAdrequest);
                 Log.d("","");
             }
 
@@ -188,11 +204,11 @@ public class DataManager {
             @Override
             public void onRewardedVideoAdFailedToLoad(int i) {
                 Log.d("","");
+                mRewardedVideoAd.loadAd(REWARD_ID, mAdrequest);
             }
         });
 
-        mRewardedVideoAd.loadAd("ca-app-pub-9291877653530829/5429332992",
-                new AdRequest.Builder().build());
+        mRewardedVideoAd.loadAd(REWARD_ID, mAdrequest);
 
     }
 
