@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.jd.raiders2.activity.HomeActivity"
+            android:name=".activity.HomeActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,8 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.jd.raiders2.activity.TextActivity" />
-        <activity android:name="com.jd.raiders2.activity.WebActivity"></activity>
+        <activity android:name=".activity.TextActivity" />
+        <activity android:name=".activity.WebActivity" />
+        <activity android:name=".activity.VedioActivity"></activity>
     </application>
 
 </manifest>

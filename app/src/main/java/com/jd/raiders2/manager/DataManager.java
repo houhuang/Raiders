@@ -100,6 +100,19 @@ public class DataManager {
 
             mFragmentData.add(list2);
 
+            List<Base> list3 = new ArrayList<Base>();
+            JSONArray jsonArray3 = jsonObject.getJSONArray("vedio");
+            for (int i = 0; i < jsonArray3.length(); ++i)
+            {
+                BasicData data = new BasicData();
+                JSONObject object = jsonArray3.getJSONObject(i);
+                data.setTitle(object.getString("title"));
+                data.setContent(object.getString("con"));
+                list3.add(data);
+            }
+
+            mFragmentData.add(list3);
+
         }catch (JSONException e)
         {
             e.printStackTrace();

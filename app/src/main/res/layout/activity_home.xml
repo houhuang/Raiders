@@ -59,6 +59,19 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"/>
 
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/t4"
+                android:textSize="20sp"
+                android:textColor="@color/home_topBar_textRelease"
+                android:text="视频"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
         </LinearLayout>
 
         <FrameLayout
@@ -69,7 +82,7 @@
 
             <ImageView
                 android:id="@+id/img_show"
-                android:layout_width="35dp"
+                android:layout_width="30dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="27dp"
                 android:background="@drawable/bar_iamge" />

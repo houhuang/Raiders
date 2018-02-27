@@ -17,6 +17,7 @@ import android.widget.ListView;
 
 import com.jd.raiders2.R;
 import com.jd.raiders2.activity.TextActivity;
+import com.jd.raiders2.activity.VedioActivity;
 import com.jd.raiders2.activity.WebActivity;
 import com.jd.raiders2.adapter.FragmentListAdapter;
 import com.jd.raiders2.manager.Base;
@@ -82,17 +83,19 @@ public class HomeFragment extends Fragment {
                 editor.putInt("adscount", adsCount);
                 editor.commit();
 
-
-                if ( page < 2)
+                if (page == 0 || page == 1)
                 {
                     Intent intent = new Intent(mContext, TextActivity.class);
                     startActivity(intent);
-                }else
+                }else if (page == 2)
                 {
                     Intent intent = new Intent(mContext, WebActivity.class);
                     startActivity(intent);
+                }else if (page == 3)
+                {
+                    Intent intent = new Intent(mContext, VedioActivity.class);
+                    startActivity(intent);
                 }
-
 
                 new Handler().postDelayed(new Runnable() {
                     @Override

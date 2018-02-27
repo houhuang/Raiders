@@ -29,6 +29,8 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final int TYPE = 4;
+
     private InterstitialAd mInterstitialAd;
     private Context mContext;
 
@@ -36,7 +38,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private Animation animation = null;
     private ViewPager mViewPager;
 
-    private TextView[] mTextView = new TextView[3];
+    private TextView[] mTextView = new TextView[TYPE];
     private List<HomeFragment> mFragmentList = new ArrayList<HomeFragment>();
 
     private int current_page = 0;
@@ -77,12 +79,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         HomeFragment f1 = new HomeFragment(this, DataManager.getInstance().getFragmentData().get(0), 0);
         HomeFragment f2 = new HomeFragment(this, DataManager.getInstance().getFragmentData().get(1), 1);
         HomeFragment f3 = new HomeFragment(this, DataManager.getInstance().getFragmentData().get(2), 2);
-//        HomeFragment f4 = new HomeFragment(this, DataManager.getInstance().getFragmentData().get(3), 3);
+        HomeFragment f4 = new HomeFragment(this, DataManager.getInstance().getFragmentData().get(3), 3);
 
         mFragmentList.add(f1);
         mFragmentList.add(f2);
         mFragmentList.add(f3);
-//        mFragmentList.add(f4);
+        mFragmentList.add(f4);
 
         mViewPager = (ViewPager)findViewById(R.id.viewPager);
         mViewPager.setAdapter(new HomeFragmentAdapter(getSupportFragmentManager(), mFragmentList));
@@ -103,10 +105,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                 if (current_page == position)
                 {
-                    lp.leftMargin = orignalLeft +  current_page*(screenWidth/3) + (int)(positionOffset  * (screenWidth * 1.0 / 3));
+                    lp.leftMargin = orignalLeft +  current_page*(screenWidth/TYPE) + (int)(positionOffset  * (screenWidth * 1.0 / TYPE));
                 }else
                 {
-                    lp.leftMargin = orignalLeft +  current_page*(screenWidth/3) - (int)((1-positionOffset)  * (screenWidth * 1.0 / 3));
+                    lp.leftMargin = orignalLeft +  current_page*(screenWidth/TYPE) - (int)((1-positionOffset)  * (screenWidth * 1.0 / TYPE));
                 }
 
 
@@ -154,7 +156,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         mTextView[0] = (TextView)findViewById(R.id.t1);
         mTextView[1] = (TextView)findViewById(R.id.t2);
         mTextView[2] = (TextView)findViewById(R.id.t3);
-//        mTextView[3] = (TextView)findViewById(R.id.t4);
+        mTextView[3] = (TextView)findViewById(R.id.t4);
 
         for (int i=0; i < mTextView.length; ++i) {
             mTextView[i].setOnClickListener(this);
@@ -162,10 +164,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
 
         FrameLayout.LayoutParams fl = (FrameLayout.LayoutParams)img_show.getLayoutParams();
-        fl.leftMargin = screenWidth/6 - fl.width/2;
+        fl.leftMargin = screenWidth/(2*TYPE) - fl.width/2;
         img_show.setLayoutParams(fl);
 
-        orignalLeft = screenWidth/6 - fl.width/2;
+        orignalLeft = screenWidth/(2*TYPE) - fl.width/2;
 
     }
 
@@ -184,11 +186,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.t3:
                 current_page = 2;
                 break;
+            case R.id.t4:
+                current_page = 3;
+                break;
             default:
         }
         if (current_page != prePage)
         {
-            imageRunAnimation(0, (current_page-prePage)*screenWidth/3);
+            imageRunAnimation(0, (current_page-prePage)*screenWidth/TYPE);
             mViewPager.setCurrentItem(current_page, false);
 
         }else
@@ -219,7 +224,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 img_show.clearAnimation();
 
                 FrameLayout.LayoutParams fl = (FrameLayout.LayoutParams)img_show.getLayoutParams();
-                fl.leftMargin = current_page * screenWidth/3 + orignalLeft;
+                fl.leftMargin = current_page * screenWidth/TYPE + orignalLeft;
                 img_show.setLayoutParams(fl);
 
                 mTextView[current_page].setTextColor(ContextCompat.getColor(mContext, R.color.home_topBar_textPress));

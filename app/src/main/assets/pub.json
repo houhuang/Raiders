@@ -360,5 +360,20 @@
             "title": "稳定驾驶技巧",
             "con": "http://www.gamersky.com/handbook/201801/998934.shtml"
         }
-    ]
+    ],
+
+    "vedio": [
+        {
+            "title": "突破天际37杀吃鸡！国服第一突击手再创记录！",
+            "con": "https://www.youtube.com/watch?v=5d6wlt7ecHs"
+        },
+        {
+            "title": "呆妹儿吃鸡遇“大哥”险气哭",
+            "con": "https://www.youtube.com/watch?v=XxsUhsn_e0M"
+        },
+        {
+            "title": "单人4排1v8吃鸡！血战机场31杀！",
+            "con": "https://www.youtube.com/watch?v=RlfoysFOwOg"
+        }
+        ]
 }
