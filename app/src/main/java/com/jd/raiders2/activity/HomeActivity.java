@@ -2,6 +2,8 @@ package com.jd.raiders2.activity;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -46,6 +48,7 @@ import okhttp3.Response;
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String DATAFILE = "pub.json";
+    public static final String JSONURL = "https://firebasestorage.googleapis.com/v0/b/raders2-86f13.appspot.com/o/pub.json?alt=media";
     private static final int TYPE = 4;
 
     private InterstitialAd mInterstitialAd;
@@ -62,6 +65,31 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private int screenWidth;
 
     private int orignalLeft;
+
+
+    Handler mHandler = new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            switch (msg.what)
+            {
+                case 0:
+                {
+                    DataManager.getInstance().initFragmentData(HomeActivity.this);
+
+                    for (int i = 0; i < mFragmentList.size(); ++i)
+                    {
+                        mFragmentList.get(i).updateData(DataManager.getInstance().getFragmentData().get(i));
+                    }
+                }
+                break;
+                default:
+                    return;
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,15 +121,16 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         DataManager.getInstance().initFragmentData(this);
 
 
-        HomeFragment f1 = new HomeFragment(this, DataManager.getInstance().getFragmentData().get(0), 0);
-        HomeFragment f2 = new HomeFragment(this, DataManager.getInstance().getFragmentData().get(1), 1);
-        HomeFragment f3 = new HomeFragment(this, DataManager.getInstance().getFragmentData().get(2), 2);
-        HomeFragment f4 = new HomeFragment(this, DataManager.getInstance().getFragmentData().get(3), 3);
+        HomeFragment f1 = new HomeFragment(this, DataManager.getInstance().getFragmentData().get(0), 0, mHandler);
+        HomeFragment f2 = new HomeFragment(this, DataManager.getInstance().getFragmentData().get(1), 1, mHandler);
+        HomeFragment f3 = new HomeFragment(this, DataManager.getInstance().getFragmentData().get(2), 2, mHandler);
+        HomeFragment f4 = new HomeFragment(this, DataManager.getInstance().getFragmentData().get(3), 3, mHandler);
 
         mFragmentList.add(f1);
         mFragmentList.add(f2);
         mFragmentList.add(f3);
         mFragmentList.add(f4);
+
 
         mViewPager = (ViewPager)findViewById(R.id.viewPager);
         mViewPager.setAdapter(new HomeFragmentAdapter(getSupportFragmentManager(), mFragmentList));
@@ -165,7 +194,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //            }
 //        });
 
-        downloadData();
+//        downloadData();
 
     }
 
@@ -316,8 +345,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     public void downloadData()
     {
-        String url = "https://firebasestorage.googleapis.com/v0/b/raders2-86f13.appspot.com/o/pub.json?alt=media";
-        HttpUtil.sendOkHttpRequest(url, new Callback() {
+        HttpUtil.sendOkHttpRequest(JSONURL, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.d("TTTTTTT", "download fai");

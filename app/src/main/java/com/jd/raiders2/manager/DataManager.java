@@ -58,6 +58,7 @@ public class DataManager {
     {
 //        String jsonStr = GeneralUtil.handleJsonFile(context, "pub.json");
 
+        mFragmentData.clear();
         String jsonStr = FileUtils.readFileFrom_datadata(context, HomeActivity.DATAFILE);
 
         if (TextUtils.isEmpty(jsonStr))
@@ -126,19 +127,6 @@ public class DataManager {
         }catch (JSONException e)
         {
             e.printStackTrace();
-        }
-
-        for (int i = 3; i < 4; ++i)
-        {
-            List<Base> list = new ArrayList<Base>();
-            for (int j =0 ; j < 30; ++j)
-            {
-                Base base = new Base();
-                base.setTitle("123456789");
-
-                list.add(base);
-            }
-            mFragmentData.add(list);
         }
     }
 
