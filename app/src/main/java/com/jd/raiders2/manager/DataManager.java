@@ -3,6 +3,7 @@ package com.jd.raiders2.manager;
 import android.content.Context;
 import android.telecom.TelecomManager;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.android.gms.ads.AdListener;
@@ -12,6 +13,8 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
+import com.jd.raiders2.activity.HomeActivity;
+import com.jd.raiders2.utils.FileUtils;
 import com.jd.raiders2.utils.GeneralUtil;
 
 import org.json.JSONArray;
@@ -53,7 +56,14 @@ public class DataManager {
 
     public void initFragmentData(Context context)
     {
-        String jsonStr = GeneralUtil.handleJsonFile(context, "pub.json");
+//        String jsonStr = GeneralUtil.handleJsonFile(context, "pub.json");
+
+        String jsonStr = FileUtils.readFileFrom_datadata(context, HomeActivity.DATAFILE);
+
+        if (TextUtils.isEmpty(jsonStr))
+        {
+            jsonStr = GeneralUtil.handleJsonFile(context, "pub.json");
+        }
 
         //基础
         try {
