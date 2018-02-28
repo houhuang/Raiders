@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
@@ -18,17 +19,33 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.internal.gmsg.HttpClient;
 import com.jd.raiders2.R;
 import com.jd.raiders2.adapter.HomeFragmentAdapter;
 import com.jd.raiders2.fragment.HomeFragment;
 import com.jd.raiders2.manager.DataManager;
+import com.jd.raiders2.utils.FileUtils;
+import com.jd.raiders2.utils.HttpUtil;
 import com.jd.raiders2.utils.StatusBarUtils;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
+
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public static final String DATAFILE = "pub.json";
     private static final int TYPE = 4;
 
     private InterstitialAd mInterstitialAd;
@@ -147,6 +164,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //                page.setRotationY(position * -45);
 //            }
 //        });
+
+        downloadData();
 
     }
 
@@ -293,5 +312,42 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public void onDestroy() {
         DataManager.getInstance().getmRewardedVideoAd().destroy(this);
         super.onDestroy();
+    }
+
+    public void downloadData()
+    {
+        String url = "https://firebasestorage.googleapis.com/v0/b/cartoonbook-f83f9.appspot.com/o/piccsv%2F0009_picture.csv?alt=media";
+        HttpUtil.sendOkHttpRequest(url, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d("TTTTTTT", "download fai");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                String content = response.body().string();
+
+                //储存到SDCard
+//                File file = null;
+//                try {
+//                    FileUtils.createSDDir("qqqq");
+//                    file = FileUtils.createFileInSDCard("xxxx4.csv", "qqqq");
+//                    FileOutputStream output = new FileOutputStream(file);
+//                    output.write(content.getBytes());
+//                    output.close();
+//
+//                }catch (Exception e){
+//
+//                }
+
+                //储存到data/data
+                FileUtils.saveFileTo_datadata(mContext, DATAFILE, content);
+
+
+
+            }
+        });
+
     }
 }
