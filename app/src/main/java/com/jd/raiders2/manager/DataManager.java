@@ -109,7 +109,14 @@ public class DataManager {
 
             }
 
-            mFragmentData.add(list2);
+            List<Base> list8 = new ArrayList<Base>();
+            for (int i = list2.size() -1 ; i >= 0; --i)
+            {
+                list8.add(list2.get(i));
+            }
+
+            mFragmentData.add(list8);
+
 
             List<Base> list3 = new ArrayList<Base>();
             JSONArray jsonArray3 = jsonObject.getJSONArray("vedio");
@@ -122,7 +129,13 @@ public class DataManager {
                 list3.add(data);
             }
 
-            mFragmentData.add(list3);
+            List<Base> list9 = new ArrayList<Base>();
+            for (int i = list3.size() -1 ; i >= 0; --i)
+            {
+                list9.add(list3.get(i));
+            }
+
+            mFragmentData.add(list9);
 
         }catch (JSONException e)
         {

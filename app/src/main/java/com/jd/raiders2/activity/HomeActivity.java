@@ -66,6 +66,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     private int orignalLeft;
 
+    private HomeFragmentAdapter homeFragmentAdapter;
 
     Handler mHandler = new Handler()
     {
@@ -79,10 +80,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 {
                     DataManager.getInstance().initFragmentData(HomeActivity.this);
 
+//                    homeFragmentAdapter.notifyDataSetChanged();
                     for (int i = 0; i < mFragmentList.size(); ++i)
                     {
                         mFragmentList.get(i).updateData(DataManager.getInstance().getFragmentData().get(i));
                     }
+
+//                    mViewPager.setCurrentItem(3, true);
                 }
                 break;
                 default:
@@ -131,9 +135,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         mFragmentList.add(f3);
         mFragmentList.add(f4);
 
-
+        homeFragmentAdapter = new HomeFragmentAdapter(getSupportFragmentManager(), mFragmentList);
         mViewPager = (ViewPager)findViewById(R.id.viewPager);
-        mViewPager.setAdapter(new HomeFragmentAdapter(getSupportFragmentManager(), mFragmentList));
+        mViewPager.setAdapter(homeFragmentAdapter);
         mViewPager.setCurrentItem(0, false);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

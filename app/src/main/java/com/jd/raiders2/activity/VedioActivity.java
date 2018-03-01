@@ -1,5 +1,7 @@
 package com.jd.raiders2.activity;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -214,6 +216,23 @@ public class VedioActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        SharedPreferences preferences = this.getSharedPreferences("userdata", Activity.MODE_PRIVATE);
+        int adsCount = preferences.getInt("adscount", 0);
+        if (adsCount >= 5)
+        {
+            SharedPreferences.Editor editor = this.getSharedPreferences("userdata", Activity.MODE_PRIVATE).edit();
+            editor.putInt("adscount", 0);
+            editor.commit();
+
+            DataManager.getInstance().showRewardAds();
+        }else
+        {
+            DataManager.getInstance().showAds();
+        }
+
+
+
     }
 
     @Override
