@@ -8,8 +8,8 @@ android {
         applicationId "com.jd.raiders2"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 110
-        versionName "1.1.0"
+        versionCode 111
+        versionName "1.1.1"
     }
     buildTypes {
         release {

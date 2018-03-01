@@ -198,8 +198,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //            }
 //        });
 
-//        downloadData();
-
+        downloadData();
     }
 
     private void bindViews() {
